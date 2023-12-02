@@ -1,4 +1,4 @@
-package com.example.flutter_patrol_ui_testing
+package com.example.flutterpatrol
 
 import io.flutter.embedding.android.FlutterActivity
 
