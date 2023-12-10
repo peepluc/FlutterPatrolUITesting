@@ -1,44 +1,65 @@
 // ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:flutter_patrol_ui_testing/mainQuiz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
 
 import 'config.dart';
 
-// This is an example integration test using Patrol. Use it as a base to
-// create your own Patrol-powered test.
-//
-// To run it, you have to use `patrol drive` instead of `flutter test`.
-
 void main() {
   patrolTest('',
         ($) async {
-      // Replace with your own app widget.
       await $.pumpWidgetAndSettle(
-        MaterialApp(
-          home: Scaffold(
-            appBar: AppBar(title: const Text('app')),
-            backgroundColor: Colors.blue,
-          ),
-        ),
+          const PatrolQuizApp(),
       );
 
-      await $.native.pressHome();
+      /// ricerca tramite TESTO -> cerco il bottone
+      /// che contiene il testo 'italia' e eseguo il tap
+      // tap su italia
 
-      await $.native.pressDoubleRecentApps();
+     // await $.tap(find.text('Italia'));
+      await $('Italia').tap();
+      await $.pump(const Duration(milliseconds: 400));
 
-      await $.native.openNotifications();
+      /// ricerca tramite key -> cerco il bottone
+      /// che ha quella Key ed eseguo il tap
+      // avanti nel quiz
+      //await $.tap(find.byKey(const Key('goForwardButton')));
+      /// accesso diretto alle key e con tap
+      await $(#goForwardButton).tap();
+      await $.pump(const Duration(milliseconds: 400));
 
-      await $.native.enableWifi();
-      await $.native.disableWifi();
-      await $.native.enableWifi();
+      /// ricerca tramite iconData -> cerco l'icona
+      /// ed eseguo il tap
+      // hint action
+      await $(Icons.lightbulb).tap();
+      await $.pump(const Duration(milliseconds: 400));
+      //await $.tap(find.byIcon(Icons.lightbulb));
 
-      await $.native.pressBack();
+      /// ricerca tramite immagine -> cerco l'asset dell'immagine
+      /// ed eseguo il tap
+      // hint action
+      await $.tap(find.image(const AssetImage('assets/images/target.png')));
+      await $.pump(const Duration(milliseconds: 400));
+      await $.tap(find.byKey(const Key('goForwardButton')));
 
-      expect($('app'), findsOneWidget);
+      await $.tap(find.text('Dart'));
+      await $.tap(find.byKey(const Key('goForwardButton')));
+
+
+      expect($(#fantastic_win), findsOneWidget);
+      
+      /*
+      /// lose case
+      await $.tap(find.text('Python'));
+      await $.tap(find.byKey(const Key('goForwardButton')));
+
+      expect($(#fantastic_win), findsOneWidget);
+*/
+
     },
     config: patrolConfig,
     nativeAutomatorConfig: nativeAutomatorConfig,
-
   );
 }
