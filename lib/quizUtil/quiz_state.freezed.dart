@@ -24,6 +24,7 @@ mixin _$QuizState {
   String? get tapOnAnswer => throw _privateConstructorUsedError;
   double? get progress => throw _privateConstructorUsedError;
   bool? get showHint => throw _privateConstructorUsedError;
+  bool? get tapped => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $QuizStateCopyWith<QuizState> get copyWith =>
@@ -43,7 +44,8 @@ abstract class $QuizStateCopyWith<$Res> {
       int? questionIndx,
       String? tapOnAnswer,
       double? progress,
-      bool? showHint});
+      bool? showHint,
+      bool? tapped});
 }
 
 /// @nodoc
@@ -67,6 +69,7 @@ class _$QuizStateCopyWithImpl<$Res, $Val extends QuizState>
     Object? tapOnAnswer = freezed,
     Object? progress = freezed,
     Object? showHint = freezed,
+    Object? tapped = freezed,
   }) {
     return _then(_value.copyWith(
       questionModels: freezed == questionModels
@@ -101,6 +104,10 @@ class _$QuizStateCopyWithImpl<$Res, $Val extends QuizState>
           ? _value.showHint
           : showHint // ignore: cast_nullable_to_non_nullable
               as bool?,
+      tapped: freezed == tapped
+          ? _value.tapped
+          : tapped // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -121,7 +128,8 @@ abstract class _$$QuizStateImplCopyWith<$Res>
       int? questionIndx,
       String? tapOnAnswer,
       double? progress,
-      bool? showHint});
+      bool? showHint,
+      bool? tapped});
 }
 
 /// @nodoc
@@ -143,6 +151,7 @@ class __$$QuizStateImplCopyWithImpl<$Res>
     Object? tapOnAnswer = freezed,
     Object? progress = freezed,
     Object? showHint = freezed,
+    Object? tapped = freezed,
   }) {
     return _then(_$QuizStateImpl(
       questionModels: freezed == questionModels
@@ -177,6 +186,10 @@ class __$$QuizStateImplCopyWithImpl<$Res>
           ? _value.showHint
           : showHint // ignore: cast_nullable_to_non_nullable
               as bool?,
+      tapped: freezed == tapped
+          ? _value.tapped
+          : tapped // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -192,7 +205,8 @@ class _$QuizStateImpl implements _QuizState {
       this.questionIndx,
       this.tapOnAnswer,
       this.progress = 0.0,
-      this.showHint = false})
+      this.showHint = false,
+      this.tapped = false})
       : _questionModels = questionModels;
 
   final List<QAModel>? _questionModels;
@@ -224,10 +238,13 @@ class _$QuizStateImpl implements _QuizState {
   @override
   @JsonKey()
   final bool? showHint;
+  @override
+  @JsonKey()
+  final bool? tapped;
 
   @override
   String toString() {
-    return 'QuizState(questionModels: $questionModels, userTap: $userTap, isFinalResults: $isFinalResults, correctAnswers: $correctAnswers, questionIndx: $questionIndx, tapOnAnswer: $tapOnAnswer, progress: $progress, showHint: $showHint)';
+    return 'QuizState(questionModels: $questionModels, userTap: $userTap, isFinalResults: $isFinalResults, correctAnswers: $correctAnswers, questionIndx: $questionIndx, tapOnAnswer: $tapOnAnswer, progress: $progress, showHint: $showHint, tapped: $tapped)';
   }
 
   @override
@@ -249,7 +266,8 @@ class _$QuizStateImpl implements _QuizState {
             (identical(other.progress, progress) ||
                 other.progress == progress) &&
             (identical(other.showHint, showHint) ||
-                other.showHint == showHint));
+                other.showHint == showHint) &&
+            (identical(other.tapped, tapped) || other.tapped == tapped));
   }
 
   @override
@@ -262,7 +280,8 @@ class _$QuizStateImpl implements _QuizState {
       questionIndx,
       tapOnAnswer,
       progress,
-      showHint);
+      showHint,
+      tapped);
 
   @JsonKey(ignore: true)
   @override
@@ -280,7 +299,8 @@ abstract class _QuizState implements QuizState {
       final int? questionIndx,
       final String? tapOnAnswer,
       final double? progress,
-      final bool? showHint}) = _$QuizStateImpl;
+      final bool? showHint,
+      final bool? tapped}) = _$QuizStateImpl;
 
   @override
   List<QAModel>? get questionModels;
@@ -298,6 +318,8 @@ abstract class _QuizState implements QuizState {
   double? get progress;
   @override
   bool? get showHint;
+  @override
+  bool? get tapped;
   @override
   @JsonKey(ignore: true)
   _$$QuizStateImplCopyWith<_$QuizStateImpl> get copyWith =>

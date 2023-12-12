@@ -14,5 +14,6 @@ class QuizState with _$QuizState {
     String? tapOnAnswer,
     @Default(0.0)double? progress,
     @Default(false) bool? showHint,
+    @Default(false) bool? tapped,
   }) = _QuizState;
 }

@@ -26,7 +26,7 @@ class QuizCubit extends Cubit<QuizState> {
   void goForward() {
     if (state.questionIndx! < state.questionModels!.length - 1) {
       emit(state.copyWith(
-          questionIndx: state.questionIndx! + 1, userTap: false ,showHint: false));
+          questionIndx: state.questionIndx! + 1, userTap: false ,showHint: false, tapped: false));
       emit(state.copyWith(progress: state.questionIndx!/state.questionModels!.length  ,
           ));
     } else {
@@ -35,7 +35,7 @@ class QuizCubit extends Cubit<QuizState> {
   }
 
   void shoHint(){
-    emit(state.copyWith(showHint:  true));
+    emit(state.copyWith(showHint:  true, tapped:  true));
   }
 
   void goEndResult() {

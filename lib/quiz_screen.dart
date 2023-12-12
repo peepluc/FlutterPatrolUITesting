@@ -233,9 +233,10 @@ Widget questionSection(BuildContext context, QuizState state,
               context.read<QuizCubit>().shoHint();
               controllerTopCenter.play();
             },
-            icon: const Icon(
+            icon:  Icon(
               Icons.lightbulb,
               size: 35,
+              color: (state.tapped!) ? Colors.blue : Colors.grey ,
             ),
           ),
           (state.userTap!)
